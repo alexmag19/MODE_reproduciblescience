@@ -24,3 +24,5 @@ Compétition ?
 III. Matrice en épidémiologie -> Jeanne
 
 IV. Chaînes de Markov -> Quentin
+
+
