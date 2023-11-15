@@ -27,8 +27,48 @@ IV. Chaînes de Markov -> Quentin
 
 
 II/ 
-Pendant ces 10 ans, la colonie va se reproduire avec un taux de ... chaque année 
-Chaque année, les individus qui sont matures sexuellement 
+Nous retrouvons maintenant notre famille de suricates 10 ans plus tard. Pendant cette décennie notre population a bien évolué, 
+différentes classes d’âges se sont donc formées. Nous avons tout d’abord la classe des juvéniles, notés J qui ont entre 0 et 1 an, 
+soit les individus ne possédant pas encore la maturité sexuelle et il n’y qu’une petite partie de ces individus qui parviennent 
+à atteindre la classe d’âge adulte, en suivant un taux de passage noté TPa. Ensuite nous passons à la classe d’âge des adultes, 
+notés A, qui eux peuvent se reproduire avec un taux de fécondité noté TFa et qui ont tous entre 1 et 10 ans. Les femelles suricates
+adultes survivent d’une année sur l’autre avec un taux de survie noté TSa et il n’y qu’une petite partie de ces femelles qui 
+parviennent à atteindre la classe d’âge sénior, en suivant un taux de passage noté TPs. Pour le bien de notre histoire, nous 
+allons considérer qu’a partir de 10 ans nos suricates adultes appartiennent à la classe d’âge des seniors, notés S et qu’ils 
+ont un taux de fécondité inférieur à celui des adultes, notés TFs. Les femelles suricates seniors survivent d’une année sur 
+l’autre avec un taux de survie noté TSs. 
+Avec toutes ces informations nous pouvons dessiner l’arbre de vie suivant : 
 
-se reproduit à un taux chaque année et une partie devient sénescente. On va obtenir des classes d’âges différentes -> Evolution augmentation de la population. On considère d’abord un modèle où toutes les femelles se reproduisent, puis on passe au modèle réel où seule une femelle dominante se reproduit.
-En réalité, des prédateurs attaque la colonie -> perte de membres : on modélise l’évolution avec un impact prédateur 
+(mettre figure en latex)
+
+Figure 2 : Cycle de vie des suricates
+
+Pour le compléter on estime que : 
+-	une femelle suricate adulte va avoir en moyenne 3 petits par an
+-	environ 90% des femelles suricates adultes survivent une année sur l’autre, jusqu’à sa dixième année. 
+-	une femelle suricate senior va avoir en moyenne 1 petit par an 
+-	40 % des femelles suricates seniors qui sont encore vivantes à la fin de onzième année vont survivre, mais pas au-delà d’une douzième année.
+-	un juvénile sur deux ne survit pas à sa première année de vie
+-	30% des femelles suricates adultes atteignent le stade sénior 
+Avec toutes ces informations nous pouvons ainsi compléter notre cycle de vie :
+
+Figure 3 : Cycle de vie des suricates complété 
+
+Si nous notons, pour tout instant t (le temps étant compté en années, de sorte que t est entier), Jt le nombre de suricates juvéniles, 
+At celui des adultes et St celui des séniors on aura ainsi :
+
+Nt = Jt + At + St
+
+le nombre total de suricates dans la population étudiée.
+
+{█(J_(t+1)=0 * J_t+ 〖〖TF〗_a  * A〗_t  + 〖TF〗_s  * S_t@A_(t+1)=〖TP〗_a  * J_t+ 〖〖TS〗_a* A〗_t- 〖TP〗_s* A_t  + 0 * S_t@S_(t+1)=0 * J_t+ 〖〖TP〗_s  * A〗_t  + 〖TS〗_s  * S_t )┤
+
+
+{█(J_(t+1)=0 * J_t+ 〖3 * A〗_t  + 1 * S_t@A_(t+1)=0,5 * J_t+ 〖(0,9-0,3)* A〗_t  + 0 * S_t@S_(t+1)=0 * J_t+ 〖0,3 * A〗_t  + 0,4 * S_t )┤
+
+ 
+Les hypothèses ci-dessus se traduisent par les équations suivantes : 
+
+(trouver comment mettre les équations)
+
+Les hypothèses ci-dessus se traduisent par les équations suivantes : 
