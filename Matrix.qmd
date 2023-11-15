@@ -26,3 +26,9 @@ III. Matrice en épidémiologie -> Jeanne
 IV. Chaînes de Markov -> Quentin
 
 
+II/ 
+Pendant ces 10 ans, la colonie va se reproduire avec un taux de ... chaque année 
+Chaque année, les individus qui sont matures sexuellement 
+
+se reproduit à un taux chaque année et une partie devient sénescente. On va obtenir des classes d’âges différentes -> Evolution augmentation de la population. On considère d’abord un modèle où toutes les femelles se reproduisent, puis on passe au modèle réel où seule une femelle dominante se reproduit.
+En réalité, des prédateurs attaque la colonie -> perte de membres : on modélise l’évolution avec un impact prédateur 
