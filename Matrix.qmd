@@ -57,38 +57,48 @@ Figure 3 : Cycle de vie des suricates complété
 Si nous notons, pour tout instant t (le temps étant compté en années, de sorte que t est entier), Jt le nombre de suricates juvéniles, 
 At celui des adultes et St celui des séniors on aura ainsi :
 
-$$N_t = J_t + A_t + S_t$$
+$$
+N_t = J_t + A_t + S_t
+$$
 
 le nombre total de suricates dans la population étudiée.
  
 Les hypothèses ci-dessus se traduisent par les équations suivantes : 
 
-$$\begin{align*}
+$$
+\begin{align*}
 J_{t+1} &= 0 \cdot J_t + TF_a \cdot A_t + TF_s \cdot S_t \\
 A_{t+1} &= TP_a \cdot J_t + TS_a \cdot A_t + 0 \cdot S_t \\
 S_{t+1} &= 0 \cdot J_t + TP_s \cdot A_t + TS_s \cdot S_t
-\end{align*}$$
+\end{align*}
+$$
 
 
-$$\begin{align*}
+$$
+\begin{align*}
 J_{t+1} &= 0 \cdot J_t + 3 \cdot A_t + 1 \cdot S_t \\
 A_{t+1} &= 0.5 \cdot J_t + 0.9 \cdot A_t + 0 \cdot S_t \\
 S_{t+1} &= 0 \cdot J_t + 0.3 \cdot A_t + 0.4 \cdot S_t
-\end{align*}$$
+\end{align*}
+$$
 
 Ce deuxième systeme nous permet ainsi d'établir la matrice suivante :
 
-$$\begin{bmatrix}
+$$
+\begin{bmatrix}
 0 & TF_a & TF_s \\
 TP_a & TS_a & 0 \\
 0 & TP_s & TS_s \\
-\end{bmatrix}$$
+\end{bmatrix}
+$$
 
 ce qui donne alors cette matrice : 
 
-$$\begin{bmatrix}
+$$
+\begin{bmatrix}
 0 & 3 & 1 \\
 0,5 & 0,9 & 0 \\
 0 & 0,3 & 0,4 \\
-\end{bmatrix}$$
+\end{bmatrix}
+$$
 
