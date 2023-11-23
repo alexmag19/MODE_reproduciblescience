@@ -57,18 +57,24 @@ Figure 3 : Cycle de vie des suricates complété
 Si nous notons, pour tout instant t (le temps étant compté en années, de sorte que t est entier), Jt le nombre de suricates juvéniles, 
 At celui des adultes et St celui des séniors on aura ainsi :
 
-Nt = Jt + At + St
+N_t = J_t + A_t + S_t
 
 le nombre total de suricates dans la population étudiée.
-
-{█(J_(t+1)=0 * J_t+ 〖〖TF〗_a  * A〗_t  + 〖TF〗_s  * S_t@A_(t+1)=〖TP〗_a  * J_t+ 〖〖TS〗_a* A〗_t- 〖TP〗_s* A_t  + 0 * S_t@S_(t+1)=0 * J_t+ 〖〖TP〗_s  * A〗_t  + 〖TS〗_s  * S_t )┤
-
-
-{█(J_(t+1)=0 * J_t+ 〖3 * A〗_t  + 1 * S_t@A_(t+1)=0,5 * J_t+ 〖(0,9-0,3)* A〗_t  + 0 * S_t@S_(t+1)=0 * J_t+ 〖0,3 * A〗_t  + 0,4 * S_t )┤
-
  
 Les hypothèses ci-dessus se traduisent par les équations suivantes : 
 
-(trouver comment mettre les équations)
+\begin{align*}
+J_{t+1} &= 0 \cdot J_t + TF_a \cdot A_t + TF_s \cdot S_t \\
+A_{t+1} &= TP_a \cdot J_t + TS_a \cdot A_t - TP_s \cdot A_t + 0 \cdot S_t \\
+S_{t+1} &= 0 \cdot J_t + TP_s \cdot A_t + TS_s \cdot S_t
+\end{align*}
+
+
+\begin{align*}
+J_{t+1} &= 0 \cdot J_t + 3 \cdot A_t + 1 \cdot S_t \\
+A_{t+1} &= 0.5 \cdot J_t + 0.9 - 0.3 \cdot A_t + 0 \cdot S_t \\
+S_{t+1} &= 0 \cdot J_t + 0.3 \cdot A_t + 0.4 \cdot S_t
+\end{align*}
+
 
 Les hypothèses ci-dessus se traduisent par les équations suivantes : 
