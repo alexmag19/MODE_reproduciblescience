@@ -92,14 +92,90 @@ TP_a & TS_a & 0 \\
 \end{bmatrix}
 $$
 
-ce qui donne alors cette matrice : 
+Et si nous remplaçons par nos valeurs nous obtenons ainsi la matrice suivante :  
 
 $$
 \begin{bmatrix}
 0 & 3 & 1 \\
-0,5 & 0,9 & 0 \\
-0 & 0,3 & 0,4 \\
+0.5 & 0.9 & 0 \\
+0 & 0.3 & 0.4 \\
 \end{bmatrix}
 $$
 
-gftyedhgcfdvchjfcvdztyi
+Maintenant que nous avons notre matrice nous allons pouvoir la rentrer sur le logiciel R afin de pouvoir faire différents calculs 
+que nous detaillerons plus tard : 
+
+Pour rentrer et donc créer notre matrice sur R nous allons écrire les lignes suivantes : 
+
+$$
+TF_a = 3
+TF_s = 1
+TP_a = 0.5
+TS_a = 0.9
+TP_s = 0.3
+TS_s = 0.4
+leslie<-c(0,TF_a,TF_s,TP_a,TS_a,0,0,TP_s,TS_s) # on créé la liste avec nos valeurs
+matrice<-matrix(data=leslie, nrow = 3,ncol = 3, byrow=TRUE, dimnames = ) # on la transforme en matrice 
+$$ 
+
+Ensuite, afin d'effectuer tous les calculs en lien avec notre matrice, nous devons installer un package qui s'appelle popbio
+
+$$
+install.packages("popbio")
+library(popbio)
+$$
+
+Grâce à ce package nous pourrons calculer le taux de croissance, le temps de génération cad que chaque individu soit remplacer dans chaque la population, 
+la strucuture d'age stable, que l'on va pouvoir représenter sur un graphique, le temps que met la popluation que mets pour se rétablir d'une perturbation, 
+
+$$
+lambda(matrice)
+#permet de savoir le taux de croissance de ma matrice
+# taux de croissance =
+#Population en croissance
+generation.time(matrice)
+#permet d'avoir le temps de génération cad que chaque individu soit remplacer dans chaque la population
+#generationtime = 
+#temps de regénération longue car ils vivent plus longtemps que des lapins par exemple qui aurait été de 2 ans
+#suivi sur 5 générations ppur qu'on prenne en compte le moins de fluctuations environnementales ???
+stable.stage(matrice)
+#Pour calculer la strucuture d'age stable qui est de 0.03697187 0.31607121 0.32290968 0.32404724
+#ce sont des pourcentages donc 3,7% de stae 1, 32% de stade 2, 32% de matures et 32% d'agés
+#representer cela sur un barplot 
+barplot(stable.stage(matrice), names.arg = c("yearling","juvenile","mature","postreprod"))
+#population pas à l'équilibre 
+reproductive.value(matrice)
+#pour calculer les valeyurs reproductives de chaque classe 
+#1.0000000 1.049045 1.571320 6.002137e-16(=0,000)
+#représenter avec barplot 
+barplot(reproductive.value(matrice),names.arg = c("yearling","juvenile","mature","postreprod"))
+#damping.ratio() * taux(=27) c'est le temps que met la popluation que mets pour se rétablir d'une perturbation
+N0a=c(3,31,33,33)
+N0b=c(90,3,2,3)
+pop.projection(matrice,N0a,20)
+pop.projection(matrice,N0b,20)
+#$pop.sizes donne la taille de la pop
+#$pop.changes donne le taux de croissance 
+#pop.projection permet de calculer les effectifs à chaque pas de temp a partir de la matrice et d'un valeur d'effectif initiaux
+#Faire plot pour simulation sur 20 ans et 100 ans
+#pop.sizes d'abord
+plot(pop.projection(matrice,N0a,20)$pop.sizes,type = "l",ylim = c(80,170),ylab="taille de pop",xlab = "année")
+plot(pop.projection(matrice,N0b,20)$pop.sizes,type = "l",ylim = c(80,170),ylab="taille de pop",xlab = "année")
+lines(pop.projection(matrice,N0b,20)$pop.sizes,type="l",col="red")
+lines(pop.projection(matrice,N0a,20)$pop.sizes,type="l",col="black")
+legend("topright",legend=c("equilibre","desequilibre"),text.col = c("black","red"))
+#la même chose en changeant quelques trucs mais pop.changes
+plot(pop.projection(orque,N0a,20)$pop.changes,type = "l",ylim = c(0.96,1.035),ylab="taux de croissance réalisé",xlab = "année")
+plot(pop.projection(orque,N0b,20)$pop.changes,type = "l",ylim = c(0.96,1.035),ylab="taux de croissance réalisé",xlab = "année")
+lines(pop.projection(orque,N0a,20)$pop.changes,type="l",col="black")
+lines(pop.projection(orque,N0b,20)$pop.changes,type="l",col="red")
+legend("topright",legend=c("equilibre","desequilibre"),text.col = c("black","red"))
+
+#Analyse de perturbations : étude de la varitation du taux de croissance asymptotique lorsque les paramètres d"mogrpahiques varient
+# analyse de sensibilité : variation absolue des parametres
+#analyse de'élasticité : variation realtive de paramtres
+elasticity(matrice)
+$$
+
+parler de l'effet allee et de l'effet d'un prédateur sur la pop, en refaisant les calculs avec des nouveaux taux etc...
+expliquer ce que sont tous les calculs qui ont été faits au dessus 
