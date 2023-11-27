@@ -27,16 +27,17 @@ IV. Chaînes de Markov -> Quentin
 
 
 II/ 
-Nous retrouvons maintenant notre famille de suricates 10 ans plus tard. Pendant cette décennie notre population a bien évolué, 
-différentes classes d’âges se sont donc formées. Nous avons tout d’abord la classe des juvéniles, notés J qui ont entre 0 et 1 an, 
-soit les individus ne possédant pas encore la maturité sexuelle et il n’y qu’une petite partie de ces individus qui parviennent 
-à atteindre la classe d’âge adulte, en suivant un taux de passage noté TPa. Ensuite nous passons à la classe d’âge des adultes, 
-notés A, qui eux peuvent se reproduire avec un taux de fécondité noté TFa et qui ont tous entre 1 et 10 ans. Les femelles suricates
-adultes survivent d’une année sur l’autre avec un taux de survie noté TSa et il n’y qu’une petite partie de ces femelles qui 
-parviennent à atteindre la classe d’âge sénior, en suivant un taux de passage noté TPs. Pour le bien de notre histoire, nous 
-allons considérer qu’a partir de 10 ans nos suricates adultes appartiennent à la classe d’âge des seniors, notés S et qu’ils 
-ont un taux de fécondité inférieur à celui des adultes, notés TFs. Les femelles suricates seniors survivent d’une année sur 
-l’autre avec un taux de survie noté TSs. 
+Nous retrouvons maintenant notre famille de suricates 10 ans plus tard. Pendant cette décennie notre population a bien évolué et 
+différentes classes d’âges se sont formées. 
+Nous avons tout d’abord la classe des juvéniles, notés J qui ont entre 0 et 1 an et qui correspondent aux individus ne possédant pas encore la maturité sexuelle. 
+Il n’y qu’une petite partie de ces juvéniles qui parviennent à atteindre la classe d’âge adulte, en suivant un taux de passage noté TPa.
+Ensuite nous passons à la classe d’âge des adultes, notés A, qui eux peuvent se reproduire avec un taux de fécondité noté TFa et qui ont tous entre 1 et 10 ans. 
+Les femelles suricates adultes survivent d’une année sur l’autre avec un taux de survie noté TSa et il n’y qu’une petite partie de ces femelles qui 
+parviennent à atteindre la classe d’âge sénior, en suivant un taux de passage noté TPs. 
+Pour le bien de notre histoire, nous allons considérer qu’a partir de 10 ans nos suricates adultes appartiennent à la classe d’âge des seniors, notés S et qu’ils 
+ont un taux de fécondité inférieur à celui des adultes, notés TFs.
+Les femelles suricates seniors survivent d’une année sur l’autre avec un taux de survie noté TSs. 
+
 Avec toutes ces informations nous pouvons dessiner l’arbre de vie suivant : 
 
 (mettre figure en latex)
@@ -73,6 +74,7 @@ S_{t+1} &= 0 \cdot J_t + TP_s \cdot A_t + TS_s \cdot S_t
 \end{align*}
 $$
 
+Nous pouvons ensuite remplacer par nos valeurs : 
 
 $$
 \begin{align*}
@@ -82,7 +84,15 @@ S_{t+1} &= 0 \cdot J_t + 0.3 \cdot A_t + 0.4 \cdot S_t
 \end{align*}
 $$
 
-Ce deuxième systeme nous permet ainsi d'établir la matrice suivante :
+Ce deuxième systeme nous permet ainsi d'établir une matrice.
+L'utilisation d'une matrice nous permettra par la suite de déterminer différents paramètres comme le taux de croissance par exemple,
+afin de comprendre et de prédire l'évolution de la population dans le temps.
+Cette type de matrice a un nom : la matrice de Leslie. 
+Le terme "matrice de Leslie" fait référence à l'économiste et démographe britannique Patrick Leslie, qui a introduit cette méthode de 
+modélisation démographique dans les années 1940. Initialement développé pour étudier la croissance des populations d'insectes,
+elle a ensuite été adaptée et étendue pour être appliquée à la modélisation démographique humaine et animale.
+
+Ainsi, nous pouvons créer cette matrice : 
 
 $$
 \begin{bmatrix}
@@ -92,7 +102,12 @@ TP_a & TS_a & 0 \\
 \end{bmatrix}
 $$
 
-Et si nous remplaçons par nos valeurs nous obtenons ainsi la matrice suivante :  
+Cette matrice est construite de telle sorte à ce que en colonne nous ayons dans l'ordre Jt+1, At+1, St+1 et en ligne Jt, At et St. 
+Vous remarquerez ainsi que nous avons sur la première ligne les indicateurs concernant la fécondité de nos individus notés TF.
+Sur la diagonale nous aurons parmaètres concernant la survie et sur la diagnoale en dessous ceux concernant les probabilité de passer
+d'un stade d'âge, à un autre. 
+
+Ainsi, si nous remplaçons par nos valeurs nous obtenons ainsi la matrice suivante :  
 
 $$
 \begin{bmatrix}
@@ -114,8 +129,10 @@ TP_a = 0.5
 TS_a = 0.9
 TP_s = 0.3
 TS_s = 0.4
-leslie<-c(0,TF_a,TF_s,TP_a,TS_a,0,0,TP_s,TS_s) # on créé la liste avec nos valeurs
-matrice<-matrix(data=leslie, nrow = 3,ncol = 3, byrow=TRUE, dimnames = ) # on la transforme en matrice 
+leslie<-c(0,TF_a,TF_s,TP_a,TS_a,0,0,TP_s,TS_s) 
+# Avec cette ligne de code nous avons donc créé notre liste nommée leslie, qui comprend tous les paramètres présents dans notre cycle de vie
+matrice<-matrix(data=leslie, nrow = 3,ncol = 3, byrow=TRUE, dimnames = ) 
+# La fonction matrix() nous permet de transformer cette liste en matrice
 $$ 
 
 Ensuite, afin d'effectuer tous les calculs en lien avec notre matrice, nous devons installer un package qui s'appelle popbio
@@ -125,19 +142,47 @@ install.packages("popbio")
 library(popbio)
 $$
 
-Grâce à ce package nous pourrons calculer le taux de croissance, le temps de génération cad que chaque individu soit remplacer dans chaque la population, 
-la strucuture d'age stable, que l'on va pouvoir représenter sur un graphique, le temps que met la popluation que mets pour se rétablir d'une perturbation, 
+Grâce à ce package nous pourrons calculer différents paramètres...
+
+Le premier paramètre que nous allons calculer est le taux de croissance. 
+Le taux de croissance est un indicateur démographique qui permet de connaître l'évolution d'une population à un moment donné. 
+En l'occurence, dans notre exemple on l'obtient ainsi : 
 
 $$
-lambda(matrice)
-#permet de savoir le taux de croissance de ma matrice
-# taux de croissance =
-#Population en croissance
-generation.time(matrice)
-#permet d'avoir le temps de génération cad que chaque individu soit remplacer dans chaque la population
-#generationtime = 
-#temps de regénération longue car ils vivent plus longtemps que des lapins par exemple qui aurait été de 2 ans
-#suivi sur 5 générations ppur qu'on prenne en compte le moins de fluctuations environnementales ???
+taux de croissance = lambda(matrice)
+$$
+
+On obtient ainsi un taux de croissance de 1.795362. 
+Notre taux de croissance est supérieur à 1, ce qui indique que notre population augmente. 
+Ce type de taux est généralement associé à des facteurs tels qu'un taux de natalité élevé, une faible mortalité, des migrations nettes positives,
+ou une combinaison de ces éléments. Cela indique ainsi que notre population est dynamique et que notre population est en croissance démographique. 
+Si le taux de croissance avait été inférieur à 1, cela indiquerait que notre population est en déclin. 
+Généralement dans ces types de taux de croissance sont souvent associés à des populations vieillissantes, à des tendances démographiques négatives.
+Ce qui n'est pas le cas dans notre population de surricat. 
+
+Maintenant que nous savons que notre population est en croissance démographique, nous allons regarder le temps de génération. 
+Le temps de génération correspond au temps moyen pour que chaque individus soit remplacé dans la population. 
+Nous allons donc utiliser la fonction generation.time() qui est disponible dans le package popbio. 
+
+$$
+temps_de_generation = generation.time(matrice)
+# 4.890923
+$$
+
+Dans notre cas, le pas de temps que nous avons pris est de 1 an donc nous avons un temps de génération de 4.8 ans.
+Le temps de génération représente la durée moyenne entre la naissance d'une génération parentale et la naissance de la génération suivante, 
+ce qui nous permet ainsi d'avoir une perspective sur la manière dont les caractéristiques démographiques se transmettent à travers les générations.
+
+
+
+
+
+
+le taux de croissance, le temps de génération cad que chaque individu soit remplacer dans chaque la population, 
+la strucuture d'age stable, que l'on va pouvoir représenter sur un graphique, le temps que met la popluation que mets pour se rétablir d'une perturbation, 
+
+
+
 stable.stage(matrice)
 #Pour calculer la strucuture d'age stable qui est de 0.03697187 0.31607121 0.32290968 0.32404724
 #ce sont des pourcentages donc 3,7% de stae 1, 32% de stade 2, 32% de matures et 32% d'agés
