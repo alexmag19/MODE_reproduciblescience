@@ -173,8 +173,56 @@ Dans notre cas, le pas de temps que nous avons pris est de 1 an donc nous avons 
 Le temps de génération représente la durée moyenne entre la naissance d'une génération parentale et la naissance de la génération suivante, 
 ce qui nous permet ainsi d'avoir une perspective sur la manière dont les caractéristiques démographiques se transmettent à travers les générations.
 
+On va desormais calculer la structure d'âge stable qui sera sous forme de proportion par classe d'âge et permettent de représenter la répartition attendue des différents 
+groupes d'âge dans une population stationnaire. Pour obtenir ces proportions, on suppose généralement que la population est stable dans le sens où le nombre de naissances,
+le nombre de décès et le nombre de migrants sont équilibrés et que la distribution par âge reste constante. 
 
+Pour les calculer on fait :  
 
+$$
+stable.stage(matrice)
+# 0.59577168 0.33269876 0.07152956
+$$
+
+Ainsi, selon l'hypothèse d'une population stable il faudrait : 60% de juvéniles 33% d'adultes et 0.07% de séniors
+
+On peut représenter cette structure d'âge stable en faisant : 
+
+$$
+barplot(stable.stage(matrice),names.arg=c("juvénile","adulte","senior"),ylim = c(0,0.7))
+$$
+
+On peut aussi calculer les valeurs reproductives à chaque classe d'âge, ce qui va nous permettre d'évaluer la contribution de chaque groupe d'âge à la 
+reproduction et à la croissance de la population.
+La valeur reproductive d'une classe d'âge est calculée en tenant compte des taux de survie et des taux de reproduction spécifiques à chaque classe d'âge. 
+Elle représente le nombre moyen de descendants qu'un individu d'une classe d'âge particulière peut s'attendre à produire au cours de sa vie.
+
+On peut donc écrire : 
+
+$$
+reproductive.value(matrice)
+# 1.0000000 3.5907241 0.7166599
+$$
+
+On obtient ainsi : 1 correspond à l'indice de base (classe juvénile), 3.59 (classe adulte), 0.71 (classe sénior). 
+Etant donne que les juvéniles ne peuvent pas se reproduire, on ne prend pas en compte cette classe là, d'où le 1. 
+On voit bien que ce sont les adultes qui contribuent le plus à la reproduction et que les séniors contribuent un tout petit peu. 
+
+On peut ensuite calculer le temps qu'il faudra à notre population pour se remettre d'une perturbation.
+Ce concept est important car il est souvent lié à la notion de résilience démographique. La résilience démographique se réfère à la capacité d'une population à 
+récupérer après avoir subi des perturbations telles que des catastrophes naturelles, des épidémies, des changements environnementaux, ou d'autres événements susceptibles
+d'affecter la structure ou la taille de la population.
+
+Pour ce faire on fait : 
+
+$$
+damping.ratio(matrice)
+# on obtient 2.23 qu'on multiplie par le temps de generation
+damping.ratio(matrice)*generation.time(matrice)
+# on obtient 10.89126
+$$
+
+On voit ainsi, qu'il faudrait environ 11 ans à notre population pour se remettre d'une perturbation comme une catastrophe naturelle, un changement environnemental etc...
 
 
 
@@ -183,17 +231,7 @@ la strucuture d'age stable, que l'on va pouvoir représenter sur un graphique, l
 
 
 
-stable.stage(matrice)
-#Pour calculer la strucuture d'age stable qui est de 0.03697187 0.31607121 0.32290968 0.32404724
-#ce sont des pourcentages donc 3,7% de stae 1, 32% de stade 2, 32% de matures et 32% d'agés
-#representer cela sur un barplot 
-barplot(stable.stage(matrice), names.arg = c("yearling","juvenile","mature","postreprod"))
-#population pas à l'équilibre 
-reproductive.value(matrice)
-#pour calculer les valeyurs reproductives de chaque classe 
-#1.0000000 1.049045 1.571320 6.002137e-16(=0,000)
-#représenter avec barplot 
-barplot(reproductive.value(matrice),names.arg = c("yearling","juvenile","mature","postreprod"))
+
 #damping.ratio() * taux(=27) c'est le temps que met la popluation que mets pour se rétablir d'une perturbation
 N0a=c(3,31,33,33)
 N0b=c(90,3,2,3)
