@@ -224,41 +224,101 @@ $$
 
 On voit ainsi, qu'il faudrait environ 11 ans à notre population pour se remettre d'une perturbation comme une catastrophe naturelle, un changement environnemental etc...
 
+Maintenant que nous avons vu comment se comportait notre population, nous allons regarder des projections sur différentes tailles de population.
 
+Tout d'abord, quand la population est dans un état proche de la population stable, soit 60% de juvéniles, 33% d'adultes et 7% de séniors. 
+Dans un premier temps on va partir sur un pas de temps de 20.  
 
-le taux de croissance, le temps de génération cad que chaque individu soit remplacer dans chaque la population, 
-la strucuture d'age stable, que l'on va pouvoir représenter sur un graphique, le temps que met la popluation que mets pour se rétablir d'une perturbation, 
+$$
+pop.projection(matrice,c(60,33,7),20) #proche de la stucture stable
+#on entre le nom de la matrice, un vecteur avec l'effectif initial de chaque classe et le nbr de pas de temps
+#on obtient des tailles de population par année (popsize) et les taux de croissance (popchanges)
+# $pop.sizes
+# [1]     100.000     178.400     321.520     576.352    1035.510    1858.521    3337.200    5991.095   10756.497
+# [10]   19311.554   34671.435   62247.613  111757.133  200644.407  360229.435  646742.179 1161136.405 2084660.164
+# [19] 3742719.735 6719536.860
 
+# $pop.changes
+# [1] 1.784000 1.802242 1.792585 1.796663 1.794787 1.795622 1.795246 1.795414 1.795339 1.795373 1.795357 1.795364
+# [13] 1.795361 1.795362 1.795362 1.795362 1.795362 1.795362 1.795362
+$$ 
 
+Ainsi, on voit avec les pop.sizes qu'au bout de 19 ans, en situtation stable, on aurait une population de 6719536.860 individus et que le taux de croissance 
+passerait de 1.784000 à 1.795362. 
 
+Et si on fait durer cette simulation sur 100 pas de temps on obtient alors : 
 
-#damping.ratio() * taux(=27) c'est le temps que met la popluation que mets pour se rétablir d'une perturbation
-N0a=c(3,31,33,33)
-N0b=c(90,3,2,3)
-pop.projection(matrice,N0a,20)
-pop.projection(matrice,N0b,20)
-#$pop.sizes donne la taille de la pop
-#$pop.changes donne le taux de croissance 
-#pop.projection permet de calculer les effectifs à chaque pas de temp a partir de la matrice et d'un valeur d'effectif initiaux
-#Faire plot pour simulation sur 20 ans et 100 ans
-#pop.sizes d'abord
-plot(pop.projection(matrice,N0a,20)$pop.sizes,type = "l",ylim = c(80,170),ylab="taille de pop",xlab = "année")
-plot(pop.projection(matrice,N0b,20)$pop.sizes,type = "l",ylim = c(80,170),ylab="taille de pop",xlab = "année")
-lines(pop.projection(matrice,N0b,20)$pop.sizes,type="l",col="red")
-lines(pop.projection(matrice,N0a,20)$pop.sizes,type="l",col="black")
-legend("topright",legend=c("equilibre","desequilibre"),text.col = c("black","red"))
-#la même chose en changeant quelques trucs mais pop.changes
-plot(pop.projection(orque,N0a,20)$pop.changes,type = "l",ylim = c(0.96,1.035),ylab="taux de croissance réalisé",xlab = "année")
-plot(pop.projection(orque,N0b,20)$pop.changes,type = "l",ylim = c(0.96,1.035),ylab="taux de croissance réalisé",xlab = "année")
-lines(pop.projection(orque,N0a,20)$pop.changes,type="l",col="black")
-lines(pop.projection(orque,N0b,20)$pop.changes,type="l",col="red")
-legend("topright",legend=c("equilibre","desequilibre"),text.col = c("black","red"))
-
-#Analyse de perturbations : étude de la varitation du taux de croissance asymptotique lorsque les paramètres d"mogrpahiques varient
-# analyse de sensibilité : variation absolue des parametres
-#analyse de'élasticité : variation realtive de paramtres
-elasticity(matrice)
+$$
+pop.projection(matrice,c(60,33,7),100)
 $$
 
-parler de l'effet allee et de l'effet d'un prédateur sur la pop, en refaisant les calculs avec des nouveaux taux etc...
-expliquer ce que sont tous les calculs qui ont été faits au dessus 
+On passerait alors d'un effectif initial de 1.000000e+02 individus à un effectif de 1.443784e+27 individus. 
+Pour ce qui est du taux de croissance on passerait de 1.784000 à 1.795362.
+
+On observe ainsi une croissance très importante de cette population. 
+
+Néanmoins, cette situation de population stable n'est pas représentatrice de la réalité. 
+Donc essayons avec d'autres effectics initiaux, avec une structure déséquilibrée. 
+
+$$
+pop.projection(matrice,c(1,4,2),20) #structure désequilibrée
+pop.projection(matrice,c(1,4,2),100)
+$$
+
+Dans ce cas là, on observe aussi une croissance très importante de notre population.
+Pour pouvoir différencier les deux, on fait des représentations graphiques.   
+
+$$
+#sur 20 ans pour la taille population
+plot((pop.projection(matrice,c(60,33,7),20)$pop.sizes),type="l",ylim=c(100,100000),ylab="taille de pop",xlab="année")
+lines(pop.projection(matrice,c(1,4,2),20)$pop.sizes,type="l",col="red")
+legend("topright",legend=c("equilibre","desequilibre"),text.col=c("black","red")) 
+
+#sur 100ans pour la taille population
+plot((pop.projection(matrice,c(60,33,7),100)$pop.sizes),type="l",xlim = c(0,30), ylim=c(100,10000000),ylab="taille de pop",xlab="année")
+lines(pop.projection(matrice,c(1,4,2),100)$pop.sizes,type="l",col="red")
+legend("topright",legend=c("equilibre","desequilibre"),text.col=c("black","red"))  
+
+#sur 20 ans pour le taux de croissance
+plot((pop.projection(matrice,c(60,33,7),20)$pop.changes),type="l",xlim = c(0,10),ylim=c(1,3),ylab="taux de croissance réalisé",xlab="année")
+lines(pop.projection(matrice,c(1,4,2),20)$pop.changes,type="l",col="red")
+legend("bottomright",legend=c("equilibre","desequilibre"),text.col=c("black","red"))
+
+#sur 100ans pour le taux de croissance
+plot((pop.projection(matrice,c(60,33,7),100)$pop.changes),type="l",xlim = c(0,10),ylim=c(1,3),ylab="taux de croissance réalisé",xlab="année")
+lines(pop.projection(matrice,c(1,4,2),100)$pop.changes,type="l",col="red")
+legend("bottomright",legend=c("equilibre","desequilibre"),text.col=c("black","red")) 
+$$
+
+Enfin, à l'aide de la fonction elasticity(), on va pouvoir voir que taux va le plus contribuer à l'évoltuion de notre population : 
+
+$$
+elasticity(matrice)
+# on obtient cette nouvelle matrice là
+#           [,1]       [,2]        [,3]
+# [1,] 0.0000000 0.30186317 0.021633323
+# [2,] 0.3234965 0.32517220 0.000000000
+# [3,] 0.0000000 0.02163332 0.006201494
+$$
+
+Grâce à cette nouvelle matrice on voit que :
+- On a des 0 là où on avait des 0 dans la matrice de base. 
+- Le plus grand chiffre, soit 0.32517220, correspond au taux de survie des adultes, ce qui signifie que c'est ce taux là qui va avoir le plus d'impact sur le lambda.
+- Le second, soit 0.3234965, correspond au taux de passage de juvénile à adulte ensuite c'est le taux de fécondité des adultes etc...
+
+Pour finir, il est aussi possible de simuler des perturbations directement avec la matrice de base et on aurait ceci : 
+
+$$
+# Si on diminue la survie des adultes de 30% par exemple
+TF_a = 3
+TF_s = 1
+TP_a = 0.5
+TS_a = 0.9*0.3
+TP_s = 0.3
+TS_s = 0.4
+leslie<-c(0,TF_a,TF_s,TP_a,TS_a,0,0,TP_s,TS_s) 
+matrice<-matrix(data=leslie, nrow = 3,ncol = 3, byrow=TRUE, dimnames = ) 
+lambda(matrice)
+$$
+
+Dans ce cas on observe ainsi une diminution du lambda de 0.36 etc...
