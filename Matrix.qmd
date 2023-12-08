@@ -318,3 +318,4 @@ $$
 
 Dans ce cas on observe ainsi une diminution du lambda de 0.36 etc...
 
+## Essayer de faire une matrice avec seulement une femelle dominante pouvant se reproduire.######
