@@ -164,10 +164,10 @@ Maintenant que nous savons que notre population est en croissance démographique
 Le temps de génération correspond au temps moyen pour que chaque individus soit remplacé dans la population. 
 Nous allons donc utiliser la fonction generation.time() qui est disponible dans le package popbio. 
 
-'''{r}
+```{r}
 temps_de_generation = generation.time(matrice)
 # 4.890923
-'''
+```
 
 Dans notre cas, le pas de temps que nous avons pris est de 1 an donc nous avons un temps de génération de 4.8 ans.
 Le temps de génération représente la durée moyenne entre la naissance d'une génération parentale et la naissance de la génération suivante, 
