@@ -30,7 +30,7 @@ II/
 Nous retrouvons maintenant notre famille de suricates 10 ans plus tard. Pendant cette décennie notre population a bien évolué et 
 différentes classes d’âges se sont formées. 
 Nous avons tout d’abord la classe des juvéniles, notés J qui ont entre 0 et 1 an et qui correspondent aux individus ne possédant pas encore la maturité sexuelle. 
-Il n’y qu’une petite partie de ces juvéniles qui parviennent à atteindre la classe d’âge adulte, en suivant un taux de passage noté TPa.
+Il n’y qu’une petite partie de ces juvéniles qui parvient à atteindre la classe d’âge adulte, en suivant un taux de passage noté TPa.
 Ensuite nous passons à la classe d’âge des adultes, notés A, qui eux peuvent se reproduire avec un taux de fécondité noté TFa et qui ont tous entre 1 et 10 ans. 
 Les femelles suricates adultes survivent d’une année sur l’autre avec un taux de survie noté TSa et il n’y qu’une petite partie de ces femelles qui 
 parviennent à atteindre la classe d’âge sénior, en suivant un taux de passage noté TPs. 
@@ -48,7 +48,7 @@ Pour le compléter on estime que :
 -	une femelle suricate adulte va avoir en moyenne 3 petits par an
 -	environ 90% des femelles suricates adultes survivent une année sur l’autre, jusqu’à sa dixième année. 
 -	une femelle suricate senior va avoir en moyenne 1 petit par an 
--	40 % des femelles suricates seniors qui sont encore vivantes à la fin de onzième année vont survivre, mais pas au-delà d’une douzième année.
+-	40 % des femelles suricates seniors qui sont encore vivantes à la fin de leur onzième année vont survivre, mais pas au-delà d’une douzième année.
 -	un juvénile sur deux ne survit pas à sa première année de vie
 -	30% des femelles suricates adultes atteignent le stade sénior 
 Avec toutes ces informations nous pouvons ainsi compléter notre cycle de vie :
@@ -102,12 +102,12 @@ TP_a & TS_a & 0 \\
 \end{bmatrix}
 $$
 
-Cette matrice est construite de telle sorte à ce que en colonne nous ayons dans l'ordre Jt+1, At+1, St+1 et en ligne Jt, At et St. 
+Cette matrice est construite de telle sorte à ce que nous ayons en colonne dans l'ordre Jt+1, At+1, St+1 et en ligne Jt, At et St. 
 Vous remarquerez ainsi que nous avons sur la première ligne les indicateurs concernant la fécondité de nos individus notés TF.
-Sur la diagonale nous aurons parmaètres concernant la survie et sur la diagnoale en dessous ceux concernant les probabilité de passer
+Sur la diagonale nous aurons les paramètres concernant la survie et sur la diagonale en dessous ceux concernant les probabilité de passer
 d'un stade d'âge, à un autre. 
 
-Ainsi, si nous remplaçons par nos valeurs nous obtenons ainsi la matrice suivante :  
+Ainsi, si nous remplaçons par nos valeurs nous obtenons la matrice suivante :  
 
 $$
 \begin{bmatrix}
@@ -118,9 +118,9 @@ $$
 $$
 
 Maintenant que nous avons notre matrice nous allons pouvoir la rentrer sur le logiciel R afin de pouvoir faire différents calculs 
-que nous detaillerons plus tard : 
+que nous detaillerons par la suite : 
 
-Pour rentrer et donc créer notre matrice sur R nous allons écrire les lignes suivantes : 
+Pour rentrer et donc créer notre matrice sur R, nous allons écrire les lignes suivantes : 
 
 
 ```{r}
@@ -144,23 +144,23 @@ install.packages("popbio")
 library(popbio)
 $$
 
-Grâce à ce package nous pourrons calculer différents paramètres...
+Grâce à ce package nous pourrons calculer différents paramètres :
 
 Le premier paramètre que nous allons calculer est le taux de croissance. 
 Le taux de croissance est un indicateur démographique qui permet de connaître l'évolution d'une population à un moment donné. 
-En l'occurence, dans notre exemple on l'obtient ainsi : 
+En l'occurence, dans notre exemple nous l'obtenons ainsi : 
 
 $$
 taux de croissance = lambda(matrice)
 $$
 
-On obtient ainsi un taux de croissance de 1.795362. 
+Nous obtenons alors un taux de croissance de 1.795362. 
 Notre taux de croissance est supérieur à 1, ce qui indique que notre population augmente. 
 Ce type de taux est généralement associé à des facteurs tels qu'un taux de natalité élevé, une faible mortalité, des migrations nettes positives,
-ou une combinaison de ces éléments. Cela indique ainsi que notre population est dynamique et que notre population est en croissance démographique. 
-Si le taux de croissance avait été inférieur à 1, cela indiquerait que notre population est en déclin. 
-Généralement dans ces types de taux de croissance sont souvent associés à des populations vieillissantes, à des tendances démographiques négatives.
-Ce qui n'est pas le cas dans notre population de surricat. 
+ou une combinaison de ces éléments. Ainsi, cela indique que notre population est dynamique et qu'elle est en croissance démographique. 
+Si le taux de croissance avait été inférieur à 1, cela aurait indiqué que notre population serait en déclin. 
+Généralement, ces types de taux de croissance sont associés à des populations vieillissantes, aux tendances démographiques négatives.
+Ceci n'est pas le cas dans notre population de suricates. 
 
 Maintenant que nous savons que notre population est en croissance démographique, nous allons regarder le temps de génération. 
 Le temps de génération correspond au temps moyen pour que chaque individus soit remplacé dans la population. 
@@ -172,12 +172,10 @@ temps_de_generation = generation.time(matrice)
 ```
 
 Dans notre cas, le pas de temps que nous avons pris est de 1 an donc nous avons un temps de génération de 4.8 ans.
-Le temps de génération représente la durée moyenne entre la naissance d'une génération parentale et la naissance de la génération suivante, 
-ce qui nous permet ainsi d'avoir une perspective sur la manière dont les caractéristiques démographiques se transmettent à travers les générations.
+Le temps de génération représente la durée moyenne entre la naissance d'une génération parentale et la naissance de la génération suivante, ce qui nous permet ainsi d'avoir une perspective sur la manière dont les caractéristiques démographiques se transmettent à travers les générations.
 
-On va desormais calculer la structure d'âge stable qui sera sous forme de proportion par classe d'âge et permettent de représenter la répartition attendue des différents 
-groupes d'âge dans une population stationnaire. Pour obtenir ces proportions, on suppose généralement que la population est stable dans le sens où le nombre de naissances,
-le nombre de décès et le nombre de migrants sont équilibrés et que la distribution par âge reste constante. 
+On va désormais calculer la structure d'âge stable, qui sera sous forme de proportion par classe d'âge et qui permet de représenter la répartition attendue des différents 
+groupes d'âge dans une population stationnaire. Pour obtenir ces proportions, on suppose généralement que la population est stable dans le sens où le nombre de naissances, le nombre de décès et le nombre de migrants sont équilibrés et que la distribution par âge reste constante. 
 
 Pour les calculer on fait :  
 
@@ -186,7 +184,7 @@ stable.stage(matrice)
 # 0.59577168 0.33269876 0.07152956
 $$
 
-Ainsi, selon l'hypothèse d'une population stable il faudrait : 60% de juvéniles 33% d'adultes et 0.07% de séniors
+Ainsi, selon l'hypothèse d'une population stable il faudrait : 60% de juvéniles, 33% d'adultes et 0.07% de séniors.
 
 On peut représenter cette structure d'âge stable en faisant : 
 
@@ -194,28 +192,23 @@ $$
 barplot(stable.stage(matrice),names.arg=c("juvénile","adulte","senior"),ylim = c(0,0.7))
 $$
 
-On peut aussi calculer les valeurs reproductives à chaque classe d'âge, ce qui va nous permettre d'évaluer la contribution de chaque groupe d'âge à la 
-reproduction et à la croissance de la population.
-La valeur reproductive d'une classe d'âge est calculée en tenant compte des taux de survie et des taux de reproduction spécifiques à chaque classe d'âge. 
-Elle représente le nombre moyen de descendants qu'un individu d'une classe d'âge particulière peut s'attendre à produire au cours de sa vie.
+On peut aussi calculer les valeurs reproductives à chaque classe d'âge, ce qui va nous permettre d'évaluer la contribution de chaque groupe d'âge à la reproduction et à la croissance de la population. La valeur reproductive d'une classe d'âge est calculée en tenant compte des taux de survie et des taux de reproduction spécifiques à chaque classe d'âge. Elle représente le nombre moyen de descendants qu'un individu d'une classe d'âge particulière peut s'attendre à produire au cours de sa vie.
 
-On peut donc écrire : 
+Nous pouvons donc écrire : 
 
 $$
 reproductive.value(matrice)
 # 1.0000000 3.5907241 0.7166599
 $$
+Nous obtenons ainsi : 1 correspondant à l'indice de base (classe juvénile), 3.59 (classe adulte), 0.71 (classe sénior). Etant donné que les juvéniles ne peuvent pas se reproduire, on ne prend pas en compte cette classe là, d'où le 1. 
+Nous voyons bien que ce sont les adultes qui contribuent le plus à la reproduction et que les séniors contribuent un tout petit peu. 
 
-On obtient ainsi : 1 correspond à l'indice de base (classe juvénile), 3.59 (classe adulte), 0.71 (classe sénior). 
-Etant donne que les juvéniles ne peuvent pas se reproduire, on ne prend pas en compte cette classe là, d'où le 1. 
-On voit bien que ce sont les adultes qui contribuent le plus à la reproduction et que les séniors contribuent un tout petit peu. 
-
-On peut ensuite calculer le temps qu'il faudra à notre population pour se remettre d'une perturbation.
+Nous pouvons ensuite calculer le temps qu'il faudra à notre population pour se remettre d'une perturbation.
 Ce concept est important car il est souvent lié à la notion de résilience démographique. La résilience démographique se réfère à la capacité d'une population à 
 récupérer après avoir subi des perturbations telles que des catastrophes naturelles, des épidémies, des changements environnementaux, ou d'autres événements susceptibles
 d'affecter la structure ou la taille de la population.
 
-Pour ce faire on fait : 
+Pour ce faire  nous faisons : 
 
 $$
 damping.ratio(matrice)
@@ -224,7 +217,7 @@ damping.ratio(matrice)*generation.time(matrice)
 # on obtient 10.89126
 $$
 
-On voit ainsi, qu'il faudrait environ 11 ans à notre population pour se remettre d'une perturbation comme une catastrophe naturelle, un changement environnemental etc...
+Nous voyons ainsi qu'il faudrait environ 11 ans à notre population pour se remettre d'une perturbation comme une catastrophe naturelle, un changement environnemental etc...
 
 Maintenant que nous avons vu comment se comportait notre population, nous allons regarder des projections sur différentes tailles de population.
 
@@ -292,7 +285,7 @@ lines(pop.projection(matrice,c(1,4,2),100)$pop.changes,type="l",col="red")
 legend("bottomright",legend=c("equilibre","desequilibre"),text.col=c("black","red")) 
 $$
 
-Enfin, à l'aide de la fonction elasticity(), on va pouvoir voir que taux va le plus contribuer à l'évoltuion de notre population : 
+Enfin, à l'aide de la fonction elasticity(), on va pouvoir voir que le taux le plus grand va le plus contribuer à l'évolution de notre population : 
 
 $$
 elasticity(matrice)
@@ -303,10 +296,10 @@ elasticity(matrice)
 # [3,] 0.0000000 0.02163332 0.006201494
 $$
 
-Grâce à cette nouvelle matrice on voit que :
+Grâce à cette nouvelle matrice, on voit que :
 - On a des 0 là où on avait des 0 dans la matrice de base. 
 - Le plus grand chiffre, soit 0.32517220, correspond au taux de survie des adultes, ce qui signifie que c'est ce taux là qui va avoir le plus d'impact sur le lambda.
-- Le second, soit 0.3234965, correspond au taux de passage de juvénile à adulte ensuite c'est le taux de fécondité des adultes etc...
+- Le second, soit 0.3234965, correspond au taux de passage de juvénile à adulte, ensuite c'est le taux de fécondité des adultes etc...
 
 Pour finir, il est aussi possible de simuler des perturbations directement avec la matrice de base et on aurait ceci : 
 
@@ -324,3 +317,4 @@ lambda(matrice)
 $$
 
 Dans ce cas on observe ainsi une diminution du lambda de 0.36 etc...
+
