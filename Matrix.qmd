@@ -134,6 +134,7 @@ leslie<-c(0,TF_a,TF_s,TP_a,TS_a,0,0,TP_s,TS_s)
 # Avec cette ligne de code nous avons donc créé notre liste nommée leslie, qui comprend tous les paramètres présents dans notre cycle de vie
 matrice<-matrix(data=leslie, nrow = 3,ncol = 3, byrow=TRUE, dimnames = ) 
 # La fonction matrix() nous permet de transformer cette liste en matrice
+
 ```
 
 Ensuite, afin d'effectuer tous les calculs en lien avec notre matrice, nous devons installer un package qui s'appelle popbio
