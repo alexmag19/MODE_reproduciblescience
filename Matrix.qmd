@@ -27,44 +27,45 @@ IV. Chaînes de Markov -> Quentin
 
 
 II/ 
-Nous retrouvons maintenant notre famille de suricates 10 ans plus tard. Pendant cette décennie notre population a bien évolué et 
-différentes classes d’âges se sont formées. 
-Nous avons tout d’abord la classe des juvéniles, notés J qui ont entre 0 et 1 an et qui correspondent aux individus ne possédant pas encore la maturité sexuelle. 
-Il n’y qu’une petite partie de ces juvéniles qui parvient à atteindre la classe d’âge adulte, en suivant un taux de passage noté TPa.
-Ensuite nous passons à la classe d’âge des adultes, notés A, qui eux peuvent se reproduire avec un taux de fécondité noté TFa et qui ont tous entre 1 et 10 ans. 
-Les femelles suricates adultes survivent d’une année sur l’autre avec un taux de survie noté TSa et il n’y qu’une petite partie de ces femelles qui 
-parviennent à atteindre la classe d’âge sénior, en suivant un taux de passage noté TPs. 
-Pour le bien de notre histoire, nous allons considérer qu’a partir de 10 ans nos suricates adultes appartiennent à la classe d’âge des seniors, notés S et qu’ils 
-ont un taux de fécondité inférieur à celui des adultes, notés TFs.
-Les femelles suricates seniors survivent d’une année sur l’autre avec un taux de survie noté TSs. 
+We're now back with our meerkat family 10 years later. During this decade, our population has evolved and different age classes have formed. 
+First of all, we have the class of juveniles, noted J, which are between 0 and 1 year old and correspond to individuals not yet sexually mature. Only a small proportion of these juveniles reach adulthood, following a rate of passage noted TPa.
+Then we move on to the adult age class, noted A, which can reproduce with a fecundity rate noted TFa and which are all between 1 and 10 years old. Adult meerkat females survive from one year to the next with a survival rate of TSa, and only a small proportion of these females make it to the next age class. reach the senior age class, following a passage rate noted TPs. 
 
-Avec toutes ces informations nous pouvons dessiner l’arbre de vie suivant : 
+For the sake of our story, we'll consider that from the age of 10 our adult meerkats belong to the senior age class, noted S, and that they have a lower fecundity rate than adults, noted TFs. Senior female meerkats survive from one year to the next with a survival rate noted TSs. 
 
-(mettre figure en latex)
+With all this information, we can draw the following tree of life: 
 
-Figure 2 : Cycle de vie des suricates
+$$
+\begin{figure}
+  \centering
+  \includegraphics{C:\Users\Alexie\OneDrive\Bureau\firgure_2}
+  \caption{Merkat life cycle}
+  \label{Figure 2 : Meerkat life cycle}
+\end{figure}
+$$
 
-Pour le compléter on estime que : 
--	une femelle suricate adulte va avoir en moyenne 3 petits par an
--	environ 90% des femelles suricates adultes survivent une année sur l’autre, jusqu’à sa dixième année. 
--	une femelle suricate senior va avoir en moyenne 1 petit par an 
--	40 % des femelles suricates seniors qui sont encore vivantes à la fin de leur onzième année vont survivre, mais pas au-delà d’une douzième année.
--	un juvénile sur deux ne survit pas à sa première année de vie
--	30% des femelles suricates adultes atteignent le stade sénior 
-Avec toutes ces informations nous pouvons ainsi compléter notre cycle de vie :
+To complete this cycle , we estimate that : 
 
-Figure 3 : Cycle de vie des suricates complété 
+- an adult female meerkat will have an average of 3 offspring per year
+- around 90% of adult meerkat females survive from one year to the next, until their tenth year. 
+- a senior female meerkat will have an average of 1 young per year 
+- 40% of senior meerkat females still alive at the end of their eleventh year will survive, but not beyond their twelfth year.
+- one juvenile out of two does not survive its first year of life
+- 30% of adult female meerkats reach the senior stage. 
 
-Si nous notons, pour tout instant t (le temps étant compté en années, de sorte que t est entier), Jt le nombre de suricates juvéniles, 
-At celui des adultes et St celui des séniors on aura ainsi :
+With all this information, we can complete our life cycle:
+
+Figure 3: Completed meerkat life cycle 
+
+If we note, for any instant t (time being counted in years, so that t is an integer), Jt the number of juvenile meerkats, At the number of adults and St the number of seniors, we get :
 
 $$
 N_t = J_t + A_t + S_t
 $$
 
-le nombre total de suricates dans la population étudiée.
+This corresponds to the total number of meerkats in the study population.
  
-Les hypothèses ci-dessus se traduisent par les équations suivantes : 
+The above assumptions translate into the following equations: 
 
 $$
 \begin{align*}
@@ -74,7 +75,7 @@ S_{t+1} &= 0 \cdot J_t + TP_s \cdot A_t + TS_s \cdot S_t
 \end{align*}
 $$
 
-Nous pouvons ensuite remplacer par nos valeurs : 
+We can then replace them with our values: 
 
 $$
 \begin{align*}
@@ -84,15 +85,11 @@ S_{t+1} &= 0 \cdot J_t + 0.3 \cdot A_t + 0.4 \cdot S_t
 \end{align*}
 $$
 
-Ce deuxième systeme nous permet ainsi d'établir une matrice.
-L'utilisation d'une matrice nous permettra par la suite de déterminer différents paramètres comme le taux de croissance par exemple,
-afin de comprendre et de prédire l'évolution de la population dans le temps.
-Cette type de matrice a un nom : la matrice de Leslie. 
-Le terme "matrice de Leslie" fait référence à l'économiste et démographe britannique Patrick Leslie, qui a introduit cette méthode de 
-modélisation démographique dans les années 1940. Initialement développé pour étudier la croissance des populations d'insectes,
-elle a ensuite été adaptée et étendue pour être appliquée à la modélisation démographique humaine et animale.
+This second system allows us to establish a matrix.
+The use of a matrix will enable us to determine various parameters, such as the growth rate, to understand and predict the evolution of the population over time.
+This type of matrix has a name : the Leslie matrix. The term "Leslie matrix" refers to the British economist and demographer Patrick Leslie, who introduced this method of demographic modeling in the 1940s. Initially developed to study the growth of insect populations, it was later adapted and extended to human and animal demographic modeling.
 
-Ainsi, nous pouvons créer cette matrice : 
+So, we can create this matrix: 
 
 $$
 \begin{bmatrix}
@@ -102,12 +99,11 @@ TP_a & TS_a & 0 \\
 \end{bmatrix}
 $$
 
-Cette matrice est construite de telle sorte à ce que nous ayons en colonne dans l'ordre Jt+1, At+1, St+1 et en ligne Jt, At et St. 
-Vous remarquerez ainsi que nous avons sur la première ligne les indicateurs concernant la fécondité de nos individus notés TF.
-Sur la diagonale nous aurons les paramètres concernant la survie et sur la diagonale en dessous ceux concernant les probabilité de passer
-d'un stade d'âge, à un autre. 
-
-Ainsi, si nous remplaçons par nos valeurs nous obtenons la matrice suivante :  
+This matrix is constructed in such a way that we have Jt+1, At+1 and St+1 in column order, and Jt, At and St in row order. 
+You will notice that on the first row we have the indicators concerning the fertility of our individuals, noted TF.
+On the diagonal we have the parameters concerning survival and on the diagonal below those concerning the probability of passing from one age stage to another. 
+ 
+So, if we replace by our values, we obtain the following matrix :  
 
 $$
 \begin{bmatrix}
@@ -117,10 +113,9 @@ $$
 \end{bmatrix}
 $$
 
-Maintenant que nous avons notre matrice nous allons pouvoir la rentrer sur le logiciel R afin de pouvoir faire différents calculs 
-que nous detaillerons par la suite : 
+Now that we have our matrix, we can enter it into the R software in order to perform various calculations, which we'll detail later: 
 
-Pour rentrer et donc créer notre matrice sur R, nous allons écrire les lignes suivantes : 
+To enter and create our matrix in R, we'll write the following lines: 
 
 
 ```{r}
@@ -131,104 +126,101 @@ TS_a = 0.9
 TP_s = 0.3
 TS_s = 0.4
 leslie<-c(0,TF_a,TF_s,TP_a,TS_a,0,0,TP_s,TS_s) 
-# Avec cette ligne de code nous avons donc créé notre liste nommée leslie, qui comprend tous les paramètres présents dans notre cycle de vie
+# With this line of code we have created our list named leslie, which includes all the parameters present in our life cycle
 matrice<-matrix(data=leslie, nrow = 3,ncol = 3, byrow=TRUE, dimnames = ) 
-# La fonction matrix() nous permet de transformer cette liste en matrice
+#  The matrix() function transforms this list into a matrix
 
 ```
 
-Ensuite, afin d'effectuer tous les calculs en lien avec notre matrice, nous devons installer un package qui s'appelle popbio
+Then, in order to perform all the calculations related to our matrix, we need to install a package called popbio
 
 ```{r}
 install.packages("popbio")
 library(popbio)
 ```
 
-Grâce à ce package nous pourrons calculer différents paramètres :
+Thanks to this package, we can calculate various parameters:
 
-Le premier paramètre que nous allons calculer est le taux de croissance. 
-Le taux de croissance est un indicateur démographique qui permet de connaître l'évolution d'une population à un moment donné. 
-En l'occurence, dans notre exemple nous l'obtenons ainsi : 
+The first parameter we'll calculate is the growth rate. 
+The growth rate is a demographic indicator that shows the evolution of a population at a given time. 
+In our example, we obtain it as follows: 
 
 ```{r}
-taux_de_croissance = lambda(matrice)
+growth_rate = lambda(matrice)
 ```
 
-Nous obtenons alors un taux de croissance de 1.795362. 
-Notre taux de croissance est supérieur à 1, ce qui indique que notre population augmente. 
-Ce type de taux est généralement associé à des facteurs tels qu'un taux de natalité élevé, une faible mortalité, des migrations nettes positives,
-ou une combinaison de ces éléments. Ainsi, cela indique que notre population est dynamique et qu'elle est en croissance démographique. 
-Si le taux de croissance avait été inférieur à 1, cela aurait indiqué que notre population serait en déclin. 
-Généralement, ces types de taux de croissance sont associés à des populations vieillissantes, aux tendances démographiques négatives.
-Ceci n'est pas le cas dans notre population de suricates. 
+This gives us a growth rate of 1.795362. 
+Our growth rate is greater than 1, indicating that our population is increasing. 
+This type of rate is generally associated with factors such as a high birth rate, low mortality, positive net migration, or a combination of these. It indicates that our population is dynamic and growing. 
+If the growth rate had been less than 1, it would have indicated that our population was in decline. 
+Typically, these types of growth rates are associated with aging populations, with negative demographic trends.
+This is not the case in our meerkat population. 
 
-Maintenant que nous savons que notre population est en croissance démographique, nous allons regarder le temps de génération. 
-Le temps de génération correspond au temps moyen pour que chaque individus soit remplacé dans la population. 
-Nous allons donc utiliser la fonction generation.time() qui est disponible dans le package popbio. 
+Now that we know our population is growing, let's look at generation time. 
+Generation time is the average time it takes for each individual to be replaced in the population. 
+So we're going to use the generation.time() function available in the popbio package. 
 
 ```{r}
-temps_de_generation = generation.time(matrice)
+generation.time(matrice)
 # 4.890923
 ```
 
-Dans notre cas, le pas de temps que nous avons pris est de 1 an donc nous avons un temps de génération de 4.8 ans.
-Le temps de génération représente la durée moyenne entre la naissance d'une génération parentale et la naissance de la génération suivante, ce qui nous permet ainsi d'avoir une perspective sur la manière dont les caractéristiques démographiques se transmettent à travers les générations.
+In our case, the time step we have taken is 1 year, so we have a generation time of 4.8 years.
+Generation time represents the average length of time between the birth of a parent generation and the birth of the next generation, giving us a perspective on how demographic characteristics are transmitted across generations.
 
-On va désormais calculer la structure d'âge stable, qui sera sous forme de proportion par classe d'âge et qui permet de représenter la répartition attendue des différents 
-groupes d'âge dans une population stationnaire. Pour obtenir ces proportions, on suppose généralement que la population est stable dans le sens où le nombre de naissances, le nombre de décès et le nombre de migrants sont équilibrés et que la distribution par âge reste constante. 
+We're now going to calculate the stable age structure, which will be in the form of a proportion per age class, and which represents the expected distribution of the different age groups in a stationary population. 
+age groups in a stationary population. To obtain these proportions, it is generally assumed that the population is stable in the sense that the number of births, deaths and migrants are balanced, and that the age distribution remains constant. 
 
-Pour les calculer on fait :  
+To calculate them, we do this :  
 
 ```{r}
 stable.stage(matrice)
 # 0.59577168 0.33269876 0.07152956
 ```
 
-Ainsi, selon l'hypothèse d'une population stable il faudrait : 60% de juvéniles, 33% d'adultes et 0.07% de séniors.
+So, assuming a stable population, we would need: 60% juveniles, 33% adults and 0.07% seniors.
 
-On peut représenter cette structure d'âge stable en faisant : 
+This stable age structure can be represented as follows: 
 
 ```{r}
 barplot(stable.stage(matrice),names.arg=c("juvénile","adulte","senior"),ylim = c(0,0.7))
 ```
 
-On peut aussi calculer les valeurs reproductives à chaque classe d'âge, ce qui va nous permettre d'évaluer la contribution de chaque groupe d'âge à la reproduction et à la croissance de la population. La valeur reproductive d'une classe d'âge est calculée en tenant compte des taux de survie et des taux de reproduction spécifiques à chaque classe d'âge. Elle représente le nombre moyen de descendants qu'un individu d'une classe d'âge particulière peut s'attendre à produire au cours de sa vie.
+We can also calculate the reproductive values for each age class, enabling us to assess the contribution of each age group to reproduction and population growth. The reproductive value of an age class is calculated by taking into account the survival rates and reproductive rates specific to each age class. It represents the average number of offspring that an individual of a particular age class can expect to produce during its lifetime.
 
-Nous pouvons donc écrire : 
+We can therefore write : 
 
 ```{r}
 reproductive.value(matrice)
 # 1.0000000 3.5907241 0.7166599
 ```
 
-Nous obtenons ainsi : 1 correspondant à l'indice de base (classe juvénile), 3.59 (classe adulte), 0.71 (classe sénior). Etant donné que les juvéniles ne peuvent pas se reproduire, on ne prend pas en compte cette classe là, d'où le 1. 
-Nous voyons bien que ce sont les adultes qui contribuent le plus à la reproduction et que les séniors contribuent un tout petit peu. 
+We thus obtain: 1 corresponding to the basic index (juvenile class), 3.59 (adult class), 0.71 (senior class). Since juveniles can't reproduce, we don't take this class into account, hence the 1. 
+We can see that it's the adults who contribute the most to reproduction, and that the seniors contribute just a little. 
 
-Nous pouvons ensuite calculer le temps qu'il faudra à notre population pour se remettre d'une perturbation.
-Ce concept est important car il est souvent lié à la notion de résilience démographique. La résilience démographique se réfère à la capacité d'une population à 
-récupérer après avoir subi des perturbations telles que des catastrophes naturelles, des épidémies, des changements environnementaux, ou d'autres événements susceptibles
-d'affecter la structure ou la taille de la population.
+We can then calculate how long it will take our population to recover from a disturbance.
+This concept is important because it is often linked to the notion of demographic resilience. Demographic resilience refers to the ability of a population to recover recover from disruptions such as natural disasters, epidemics, environmental changes, or other events likely to affect population structure or size.
 
-Pour ce faire  nous faisons : 
+To do this, we write this : 
 
 ```{r}
 damping.ratio(matrice)
-# on obtient 2.23 qu'on multiplie par le temps de generation
+# we obtain 2.23 which we will multiplicate by the generation time 
 damping.ratio(matrice)*generation.time(matrice)
-# on obtient 10.89126
+# we obtain 10.89126
 ```
 
-Nous voyons ainsi qu'il faudrait environ 11 ans à notre population pour se remettre d'une perturbation comme une catastrophe naturelle, un changement environnemental etc...
+We can see that it would take about 11 years for our population to recover from a disruption such as a natural disaster, environmental change etc...
 
-Maintenant que nous avons vu comment se comportait notre population, nous allons regarder des projections sur différentes tailles de population.
+Now that we've seen how our population behaves, let's look at projections for different population sizes.
 
-Tout d'abord, quand la population est dans un état proche de la population stable, soit 60% de juvéniles, 33% d'adultes et 7% de séniors. 
-Dans un premier temps on va partir sur un pas de temps de 20.  
+First, when the population is in a state close to stable, i.e. 60% juveniles, 33% adults and 7% seniors. 
+We'll start with a time step of 20.  
 
 ```{r}
 pop.projection(matrice,c(60,33,7),20) #proche de la stucture stable
-#on entre le nom de la matrice, un vecteur avec l'effectif initial de chaque classe et le nbr de pas de temps
-#on obtient des tailles de population par année (popsize) et les taux de croissance (popchanges)
+# we enter the name of the matrix, a vector with the initial size of each class and the number of time steps
+# we get population sizes per year (popsize) and growth rates (popchanges)
 # $pop.sizes
 # [1]     100.000     178.400     321.520     576.352    1035.510    1858.521    3337.200    5991.095   10756.497
 # [10]   19311.554   34671.435   62247.613  111757.133  200644.407  360229.435  646742.179 1161136.405 2084660.164
@@ -239,73 +231,73 @@ pop.projection(matrice,c(60,33,7),20) #proche de la stucture stable
 # [13] 1.795361 1.795362 1.795362 1.795362 1.795362 1.795362 1.795362
 ```
 
-Ainsi, on voit avec les pop.sizes qu'au bout de 19 ans, en situtation stable, on aurait une population de 6719536.860 individus et que le taux de croissance 
-passerait de 1.784000 à 1.795362. 
+Thus, we can see with the pop.sizes that after 19 years, in a stable situation, we would have a population of 6719536.860 individuals and that the growth rate from 1.784000 to 1.795362. 
 
-Et si on fait durer cette simulation sur 100 pas de temps on obtient alors : 
+And if we run this simulation over 100 time steps, we get : 
 
 ```{r}
 pop.projection(matrice,c(60,33,7),100)
 ```
 
-On passerait alors d'un effectif initial de 1.000000e+02 individus à un effectif de 1.443784e+27 individus. 
-Pour ce qui est du taux de croissance on passerait de 1.784000 à 1.795362.
+We would then go from an initial workforce of 1.000000e+02 individuals to a workforce of 1.443784e+27 individuals. 
+In terms of growth rate, we'd go from 1.784000 to 1.795362.
 
-On observe ainsi une croissance très importante de cette population. 
+We can thus observe a very significant growth in this population. 
 
-Néanmoins, cette situation de population stable n'est pas représentatrice de la réalité. 
-Donc essayons avec d'autres effectics initiaux, avec une structure déséquilibrée. 
+Nevertheless, this stable population situation is not representative of reality. 
+So let's try with other initial effectics, with an unbalanced structure. 
 
 ```{r}
 pop.projection(matrice,c(1,4,2),20) #structure désequilibrée
 pop.projection(matrice,c(1,4,2),100)
 ```
 
-Dans ce cas là, on observe aussi une croissance très importante de notre population.
-Pour pouvoir différencier les deux, on fait des représentations graphiques.   
+In this case, we also observe a very significant growth in our population.
+
+To differentiate between the two, we use graphical representations.   
 
 ```{r}
-#sur 20 ans pour la taille population
+# over 20 years for population size
 plot((pop.projection(matrice,c(60,33,7),20)$pop.sizes),type="l",ylim=c(100,100000),ylab="taille de pop",xlab="année")
 lines(pop.projection(matrice,c(1,4,2),20)$pop.sizes,type="l",col="red")
 legend("topright",legend=c("equilibre","desequilibre"),text.col=c("black","red")) 
 
-#sur 100ans pour la taille population
+# over 100 years for population size
 plot((pop.projection(matrice,c(60,33,7),100)$pop.sizes),type="l",xlim = c(0,30), ylim=c(100,10000000),ylab="taille de pop",xlab="année")
 lines(pop.projection(matrice,c(1,4,2),100)$pop.sizes,type="l",col="red")
 legend("topright",legend=c("equilibre","desequilibre"),text.col=c("black","red"))  
 
-#sur 20 ans pour le taux de croissance
+# over 20 years for growth rate 
 plot((pop.projection(matrice,c(60,33,7),20)$pop.changes),type="l",xlim = c(0,10),ylim=c(1,3),ylab="taux de croissance réalisé",xlab="année")
 lines(pop.projection(matrice,c(1,4,2),20)$pop.changes,type="l",col="red")
 legend("bottomright",legend=c("equilibre","desequilibre"),text.col=c("black","red"))
 
-#sur 100ans pour le taux de croissance
+# over 100 years on growth rate
 plot((pop.projection(matrice,c(60,33,7),100)$pop.changes),type="l",xlim = c(0,10),ylim=c(1,3),ylab="taux de croissance réalisé",xlab="année")
 lines(pop.projection(matrice,c(1,4,2),100)$pop.changes,type="l",col="red")
 legend("bottomright",legend=c("equilibre","desequilibre"),text.col=c("black","red")) 
 ```
 
-Enfin, à l'aide de la fonction elasticity(), on va pouvoir voir que le taux le plus grand va le plus contribuer à l'évolution de notre population : 
+Finally, using the elasticity() function, we can see that the highest rate will contribute the most to the evolution of our population: 
 
 ```{r}
 elasticity(matrice)
-# on obtient cette nouvelle matrice là
+# we obtain this new matrix
 #           [,1]       [,2]        [,3]
 # [1,] 0.0000000 0.30186317 0.021633323
 # [2,] 0.3234965 0.32517220 0.000000000
 # [3,] 0.0000000 0.02163332 0.006201494
 ```
 
-Grâce à cette nouvelle matrice, on voit que :
-- On a des 0 là où on avait des 0 dans la matrice de base. 
-- Le plus grand chiffre, soit 0.32517220, correspond au taux de survie des adultes, ce qui signifie que c'est ce taux là qui va avoir le plus d'impact sur le lambda.
-- Le second, soit 0.3234965, correspond au taux de passage de juvénile à adulte, ensuite c'est le taux de fécondité des adultes etc...
+With this new matrix, we can see that :
+- There are 0s where there were 0s in the basic matrix. 
+- The largest number, 0.32517220, corresponds to the adult survival rate, which means that this rate will have the greatest impact on lambda.
+- The second, 0.3234965, corresponds to the juvenile-to-adult transition rate, followed by the adult fertility rate, etc.
 
-Pour finir, il est aussi possible de simuler des perturbations directement avec la matrice de base et on aurait ceci : 
+Finally, it's also possible to simulate perturbations directly with the basic matrix, and we'd have this: 
 
 ```{r}
-# Si on diminue la survie des adultes de 30% par exemple
+# If we reduce adult survival by 30%, for example
 TF_a = 3
 TF_s = 1
 TP_a = 0.5
@@ -317,6 +309,6 @@ matrice<-matrix(data=leslie, nrow = 3,ncol = 3, byrow=TRUE, dimnames = )
 lambda(matrice)
 ```
 
-Dans ce cas on observe ainsi une diminution du lambda de 0.36 etc...
+In this case, the lambda decreases by 0.36 etc...
 
 ## Essayer de faire une matrice avec seulement une femelle dominante pouvant se reproduire.######
