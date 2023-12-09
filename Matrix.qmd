@@ -40,7 +40,7 @@ With all this information, we can draw the following tree of life:
 
 ```
 
-To complete this cycle , we estimate that : 
+To complete this cycle , we search for data corresponding the most to reality in the wild. Thus, we estimate that : 
 
 - an adult female meerkat will have an average of 3 offspring per year
 - around 90% of adult meerkat females survive from one year to the next, until their tenth year. 
