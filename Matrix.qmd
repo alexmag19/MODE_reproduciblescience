@@ -35,6 +35,8 @@ For the sake of our story, we'll consider that from the age of 10 our adult meer
 
 With all this information, we can draw the following tree of life: 
 
+![Figure 2 : Meerkat life cycle](C:/Users/Alexie/OneDrive/Bureau/firgure_2.png)
+
 ```{r}
 ![Figure 2 : Meerkat life cycle](C:\Users\Alexie\OneDrive\Bureau\firgure_2)
 
