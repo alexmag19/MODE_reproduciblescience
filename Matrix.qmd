@@ -304,4 +304,11 @@ lambda(matrice)
 
 In this case, the lambda decreases by 0.36 etc...
 
-## Essayer de faire une matrice avec seulement une femelle dominante pouvant se reproduire.######
+Bibliography : 
+
+N. Bacaër, Histoire de mathématiques et de populations, Cassini, Paris, 2008
+
+J. Bair, La matrice de Leslie et la dynamique des populations, Tangente Hors-série no 42, Mathématiques et biologie, éditions Pole, Paris, 2012, p. 90-94.
+
+J. Bair – J. Mawhin, Modèles de type proie – prédateur, Tangente Hors-série no°42, Mathématiques et biologie, éditions Pole, Paris, 2012, p. 56-59. 
+
