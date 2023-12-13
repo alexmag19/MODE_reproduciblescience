@@ -25,8 +25,10 @@ III. Matrice en épidémiologie -> Jeanne
 
 IV. Chaînes de Markov -> Quentin
 
+II/ Leslie matrix
 
-II/ 
+A) Meerkat life cycle
+
 We're now back with our meerkat family 10 years later. During this decade, our population has evolved and different age classes have formed. 
 First of all, we have the class of juveniles, noted J, which are between 0 and 1 year old and correspond to individuals not yet sexually mature. Only a small proportion of these juveniles reach adulthood, following a rate of passage noted TPa.
 Then we move on to the adult age class, noted A, which can reproduce with a fecundity rate noted TFa and which are all between 1 and 10 years old. Adult meerkat females survive from one year to the next with a survival rate of TSa, and only a small proportion of these females make it to the next age class. reach the senior age class, following a passage rate noted TPs. 
@@ -48,7 +50,8 @@ To complete this cycle , we search for data corresponding the most to reality in
 
 With all this information, we can complete our life cycle:
 
-Figure 3: Completed meerkat life cycle 
+![Figure 3 : Meerkat life cycle](C:/Users/Alexie/OneDrive/Bureau/Figure_3.png) 
+
 
 If we note, for any instant t (time being counted in years, so that t is an integer), Jt the number of juvenile meerkats, At the number of adults and St the number of seniors, we get :
 
@@ -77,6 +80,8 @@ A_{t+1} &= 0.5 \cdot J_t + 0.9 \cdot A_t + 0 \cdot S_t \\
 S_{t+1} &= 0 \cdot J_t + 0.3 \cdot A_t + 0.4 \cdot S_t
 \end{align*}
 $$
+
+B) Leslie matrix
 
 This second system allows us to establish a matrix.
 The use of a matrix will enable us to determine various parameters, such as the growth rate, to understand and predict the evolution of the population over time.
@@ -304,7 +309,7 @@ lambda(matrice)
 
 In this case, the lambda decreases by 0.36 etc...
 
-Bibliography : 
+C) Bibliography : 
 
 N. Bacaër, Histoire de mathématiques et de populations, Cassini, Paris, 2008
 
