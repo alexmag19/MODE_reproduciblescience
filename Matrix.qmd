@@ -85,9 +85,9 @@ Population dynamic is a concept that is sometimes difficult to study because it 
 - immigration, the rates of which will depend on other populations, their distances from those studied and the dispersal capacity of individuals; 
 - emigration, which will depend on the lifestyle of the species studied and its tendency to leave its original population.
 
- A matrix will allow to represent the population variation according to these four processes (Schaub M. and Abadi F., 2011 ; Abadi et al., 2010).
+ A matrix will allow to represent the population variation according to these four processes (Schaub M. and Abadi F., 2011 ; Abadi et al., 2010). 
 
- (mettre ta figure)
+![shéma dynamique des populations](C:/Users/Laurane/Documents/MODE_reproduciblescience/schéma dyn.png)      
 
 These representations can be very complete, including differences in age, gender, genetic origin and other individuals. Indeed, not all individuals will have the same impact on their population dynamics. 
 Too young or too old individuals do not participate in reproduction and therefore in the future increase of their group. The number of males will not have the same impact on the number of offspring as the females. 
@@ -1053,4 +1053,5 @@ Hoppensteadt F.C., Mathematical Methods pf Population Biology, Cambridge Univers
 Réserve de Sigean, Animaux : Suricates, (2023)
 
 Girel S., Chapitre 1 : Modèles matriciels de population,  (2020)
+
 
